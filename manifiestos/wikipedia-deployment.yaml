@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wikipedia-kubernetes
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: wikipedia-kubernetes
+  template:
+    metadata:
+      labels:
+        app: wikipedia-kubernetes
+    spec:
+      containers:
+      - name: wikipedia-kubernetes
+        image: carlota36/node-app:1.0
+        ports:
+        - containerPort: 3000
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "80m"
+          limits:
+            memory: "128Mi"
+            cpu: "250m"
